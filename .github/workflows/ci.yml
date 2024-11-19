@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Checkout the code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # 2. Set up Ruby
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0.0 # Adjust to your Ruby version
+        bundler-cache: true
+
+    # 3. Install dependencies
+    - name: Install dependencies
+      run: bundle install
+
+    # 4. Run RuboCop
+    - name: Run RuboCop
+      run: bundle exec rubocop
+
+    # 5. Set up the database
+    - name: Set up the database
+      run: |
+        bin/rails db:setup
+
+    # 6. Run tests
+    - name: Run tests
+      run: bundle exec rspec # or "bin/rails test" if you're using Minitest
