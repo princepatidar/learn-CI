@@ -58,6 +58,10 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  # group :development do
+  gem 'rubocop', require: false
+  gem 'rubocop-discourse'
+  gem 'rubocop-rails', require: false # For Rails-specific linting
 end
 
 group :test do
@@ -67,4 +71,3 @@ group :test do
 end
 
 gem 'rspec'
-gem 'rubocop', require: false

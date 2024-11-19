@@ -214,3 +214,7 @@ Style/SymbolProc:
 # URISchemes: http, https
 Layout/LineLength:
   Max: 198
+
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
